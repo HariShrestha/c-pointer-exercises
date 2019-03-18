@@ -6,41 +6,57 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-void run_linked_list() {
-    printf("Running linked list\n");
+struct Node
+{
+    int data;
+    struct Node *next;
+};
 
-    // YOUR CODE HERE
-    struct node {
-        int data;
-        int key;
-        struct node *next;
-    };
-
-    struct node *head = NULL;
-    struct node *current = NULL;
-
-    struct node *ptr = head;
-    printf("\n[ ");
-
-
-   while(ptr != NULL) {
-        printf("(%d,%d) ", ptr->key, ptr->data);
-        ptr = ptr->next;
+// This function prints contents of linked list starting from
+// the given node
+void printList(struct Node *n)
+{
+    while (n != NULL)
+    {
+        printf(" %d \n", n->data);
+        n = n->next;
     }
-    struct node *link = (struct node*) malloc(sizeof(struct node));
-
-    link->key = 10;
-    link->data = 20;
-
-    link->key = 10;
-    link->data = 20;
-
-    //point it to old first node
-    link->next = head;
-
-    //point first to new first node
-    head = link;
-
-
 }
+void run_linked_list() {
+    {
+        struct Node* head = NULL;
+        struct Node* second = NULL;
+        struct Node* third = NULL;
+        struct Node* fourth = NULL;
+        struct Node* tail = NULL;
+
+        // allocate 3 nodes in the heap
+        head  = (struct Node*)malloc(sizeof(struct Node));
+        second = (struct Node*)malloc(sizeof(struct Node));
+        third = (struct Node*)malloc(sizeof(struct Node));
+        fourth = (struct Node*)malloc(sizeof(struct Node));
+        tail  = (struct Node*)malloc(sizeof(struct Node));
+
+        head->data = 1; //assign data in first node
+        head->next = second; // Link first node with second
+
+        second->data = 2; //assign data to second node
+        second->next = third;
+
+        third->data = 3; //assign data to second node
+        third->next = fourth;
+
+        fourth->data = 4; //assign data to second node
+        fourth->next = tail;
+
+
+
+        tail->data = 5; //assign data to third node
+        tail->next = head;
+
+        printList(head);
+
+    }}
